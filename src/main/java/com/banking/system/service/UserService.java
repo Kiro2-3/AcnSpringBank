@@ -1,3 +1,7 @@
+    @Transactional
+    public User save(User user) {
+        return userRepository.save(user);
+    }
 package com.banking.system.service;
 
 import com.banking.system.dto.RegisterRequest;

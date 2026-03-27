@@ -53,6 +53,10 @@ public class User {
     @Column(name = "is_active")
     private boolean active = true;
 
+
+    @Column(name = "dark_theme")
+    private boolean darkTheme = false;
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Account> accounts = new ArrayList<>();
 

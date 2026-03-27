@@ -98,4 +98,25 @@ public class AccountController {
         }
         return "redirect:/accounts/" + id;
     }
+
+    @GetMapping("/settings")
+    public String accountSettings(Authentication authentication, Model model) {
+        User user = userService.findByUsername(authentication.getName());
+        model.addAttribute("user", user);
+        model.addAttribute("darkTheme", user.isDarkTheme());
+        return "account/settings";
+    }
+
+    @PostMapping("/settings")
+    public String updateAccountSettings(Authentication authentication,
+                                       @RequestParam String email,
+                                       @RequestParam(required = false) boolean darkTheme,
+                                       RedirectAttributes redirectAttributes) {
+        User user = userService.findByUsername(authentication.getName());
+        user.setEmail(email);
+        user.setDarkTheme(darkTheme);
+        userService.save(user);
+        redirectAttributes.addFlashAttribute("success", "Settings updated successfully!");
+        return "redirect:/accounts/settings";
+    }
 }
