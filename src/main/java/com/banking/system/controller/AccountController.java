@@ -1,22 +1,4 @@
-    @PostMapping("/change-password")
-    public String changePassword(Authentication authentication,
-                                @RequestParam String currentPassword,
-                                @RequestParam String newPassword,
-                                @RequestParam String confirmPassword,
-                                RedirectAttributes redirectAttributes) {
-        User user = userService.findByUsername(authentication.getName());
-        if (!userService.checkPassword(user, currentPassword)) {
-            redirectAttributes.addFlashAttribute("error", "Current password is incorrect.");
-            return "redirect:/accounts/settings";
-        }
-        if (!newPassword.equals(confirmPassword)) {
-            redirectAttributes.addFlashAttribute("error", "New passwords do not match.");
-            return "redirect:/accounts/settings";
-        }
-        userService.updatePassword(user, newPassword);
-        redirectAttributes.addFlashAttribute("success", "Password changed successfully!");
-        return "redirect:/accounts/settings";
-    }
+
 package com.banking.system.controller;
 
 import com.banking.system.model.Account;
@@ -136,6 +118,26 @@ public class AccountController {
         user.setDarkTheme(darkTheme);
         userService.save(user);
         redirectAttributes.addFlashAttribute("success", "Settings updated successfully!");
+        return "redirect:/accounts/settings";
+    }
+
+    @PostMapping("/change-password")
+    public String changePassword(Authentication authentication,
+                                @RequestParam String currentPassword,
+                                @RequestParam String newPassword,
+                                @RequestParam String confirmPassword,
+                                RedirectAttributes redirectAttributes) {
+        User user = userService.findByUsername(authentication.getName());
+        if (!userService.checkPassword(user, currentPassword)) {
+            redirectAttributes.addFlashAttribute("error", "Current password is incorrect.");
+            return "redirect:/accounts/settings";
+        }
+        if (!newPassword.equals(confirmPassword)) {
+            redirectAttributes.addFlashAttribute("error", "New passwords do not match.");
+            return "redirect:/accounts/settings";
+        }
+        userService.updatePassword(user, newPassword);
+        redirectAttributes.addFlashAttribute("success", "Password changed successfully!");
         return "redirect:/accounts/settings";
     }
 }
