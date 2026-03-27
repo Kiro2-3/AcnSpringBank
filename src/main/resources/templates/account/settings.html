@@ -21,7 +21,8 @@
             </div>
             <div>
                 <label>Dark Theme:</label>
-                <input type="checkbox" name="darkTheme" th:checked="${darkTheme}" />
+                <input type="hidden" name="darkTheme" value="false" />
+                <input type="checkbox" name="darkTheme" th:checked="${darkTheme}" value="true" />
             </div>
             <button type="submit">Save Settings</button>
         </form>

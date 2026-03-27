@@ -1,7 +1,4 @@
-    @Transactional
-    public User save(User user) {
-        return userRepository.save(user);
-    }
+// ...existing code...
 package com.banking.system.service;
 
 import com.banking.system.dto.RegisterRequest;
@@ -21,6 +18,11 @@ public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+
+    @Transactional
+    public User save(User user) {
+        return userRepository.save(user);
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
