@@ -26,6 +26,24 @@
             </div>
             <button type="submit">Save Settings</button>
         </form>
+
+        <hr />
+        <h3>Change Password</h3>
+        <form th:action="@{/accounts/change-password}" method="post">
+            <div>
+                <label>Current Password:</label>
+                <input type="password" name="currentPassword" required />
+            </div>
+            <div>
+                <label>New Password:</label>
+                <input type="password" name="newPassword" required minlength="6" />
+            </div>
+            <div>
+                <label>Confirm New Password:</label>
+                <input type="password" name="confirmPassword" required minlength="6" />
+            </div>
+            <button type="submit">Change Password</button>
+        </form>
     </div>
     <script th:src="@{/js/main.js}"></script>
     <script th:src="@{/js/account-settings.js}"></script>
