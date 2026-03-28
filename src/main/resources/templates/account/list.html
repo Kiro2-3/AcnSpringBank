@@ -1,51 +1,36 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accounts - Accenture</title>
-    <link rel="stylesheet" th:href="@{/css/main.css}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-</head>
+<head th:replace="fragments/head :: head('Accounts - Accenture')"></head>
 <body class="bg-base-200 min-h-screen">
-<div class="flex">
-    <!-- Sidebar and main content already DaisyUI, see below -->
-        <body class="bg-base-200 min-h-screen">
-        <div class="flex">
-            <!-- Sidebar -->
-            <nav class="w-64 bg-base-100 shadow-lg min-h-screen flex flex-col justify-between">
-                <div>
-                    <div class="flex items-center gap-2 px-6 py-6 border-b border-base-300">
-                        <i class="fas fa-university text-primary text-2xl"></i>
-                        <span class="font-bold text-xl text-primary">Accenture</span>
-                    </div>
-                    <ul class="mt-6 space-y-2 px-4">
-                        <li><a th:href="@{/dashboard}" class="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-primary/10 text-base-content"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
-                        <li><a th:href="@{/accounts}" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary/20 text-primary font-semibold"><i class="fas fa-wallet"></i> Accounts</a></li>
-                        <li><a th:href="@{/transactions}" class="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-primary/10 text-base-content"><i class="fas fa-exchange-alt"></i> Transactions</a></li>
-                        <li><a th:href="@{/currency}" class="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-primary/10 text-base-content"><i class="fas fa-coins"></i> Currency</a></li>
-                        <li><a th:href="@{/accounts/settings}" class="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-primary/10 text-base-content"><i class="fas fa-cog"></i> Settings</a></li>
-                    </ul>
-                </div>
-                <div class="px-6 py-4 border-t border-base-300">
-                    <div class="flex items-center gap-2 mb-2">
-                        <i class="fas fa-user-circle text-base-content text-2xl"></i>
-                        <span class="font-medium text-base-content" th:text="${user.fullName != null ? user.fullName : user.username}">User</span>
-                    </div>
-                    <form th:action="@{/auth/logout}" method="post">
-                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-                        <button type="submit" class="btn btn-error btn-block"><i class="fas fa-sign-out-alt"></i> Logout</button>
-                    </form>
-                </div>
-            </nav>
-            <main class="flex-1 p-8">
+<th:block th:replace="fragments/navbar :: navbar"></th:block>
+<div class="container mx-auto flex gap-8 pt-8">
+    <aside class="w-64 bg-base-100 shadow-lg rounded-xl p-6 h-fit">
+        <div class="flex flex-col items-center mb-6">
+            <i class="fas fa-university text-primary text-3xl mb-2"></i>
+            <span class="font-bold text-xl text-primary">Accenture</span>
+        </div>
+        <ul class="menu menu-vertical gap-2">
+            <li><a th:href="@{/dashboard}" class="text-base-content"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+            <li><a th:href="@{/accounts}" class="active text-primary font-semibold"><i class="fas fa-wallet"></i> Accounts</a></li>
+            <li><a th:href="@{/transactions}" class="text-base-content"><i class="fas fa-exchange-alt"></i> Transactions</a></li>
+            <li><a th:href="@{/currency}" class="text-base-content"><i class="fas fa-coins"></i> Currency</a></li>
+            <li><a th:href="@{/accounts/settings}" class="text-base-content"><i class="fas fa-cog"></i> Settings</a></li>
+        </ul>
+        <div class="mt-8 flex flex-col items-center gap-2">
+            <span class="font-medium text-base-content" th:text="${user.fullName != null ? user.fullName : user.username}">User</span>
+            <form th:action="@{/auth/logout}" method="post">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                <button type="submit" class="btn btn-error btn-sm w-full"><i class="fas fa-sign-out-alt"></i> Logout</button>
+            </form>
+        </div>
+    </aside>
+    <main class="flex-1 p-8">
                 <div class="flex items-center justify-between mb-8">
                     <div>
                         <h1 class="text-3xl font-bold text-base-content">Accounts</h1>
                         <p class="text-base-content/70">Manage your bank accounts</p>
                     </div>
-                    <button class="btn btn-primary shadow flex items-center gap-2" onclick="document.getElementById('createAccountModal').style.display='flex'">
+                    <button class="btn btn-primary shadow flex items-center gap-2" onclick="document.getElementById('depositModal').showModal()">
                         <i class="fas fa-plus"></i> New Account
                     </button>
                 </div>
@@ -106,7 +91,7 @@
 <script>
 function openDepositModal(accountId) {
     document.getElementById('depositForm').action = '/accounts/' + accountId + '/deposit';
-    document.getElementById('depositModal').style.display = 'flex';
+    document.getElementById('depositModal').showModal();
 }
 </script>
 </body>

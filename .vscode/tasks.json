@@ -1,0 +1,16 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Add Vaadin dependency",
+			"type": "shell",
+			"command": "./mvnw",
+			"args": [
+				"com.vaadin:vaadin-maven-plugin:24.3.7",
+				"init"
+			],
+			"isBackground": false,
+			"group": "build"
+		}
+	]
+}
