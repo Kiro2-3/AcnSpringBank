@@ -5,62 +5,7 @@
 <body class="bg-base-200 min-h-screen">
 <th:block th:replace="fragments/navbar :: navbar"></th:block>
 <div class="container mx-auto flex gap-8 pt-8">
-    <aside class="w-64 bg-neutral-900 shadow-xl rounded-2xl p-4 h-fit sticky top-8 self-start text-neutral-100">
-        <div class="flex flex-col items-center mb-6">
-            <i class="fas fa-university text-primary text-3xl mb-2"></i>
-            <span class="font-bold text-xl text-primary">Accenture</span>
-        </div>
-        <div x-data="{ open: null }" class="space-y-2">
-            <div>
-                <button class="flex items-center w-full px-3 py-2 rounded-lg hover:bg-neutral-800 transition" @click="open === 1 ? open = null : open = 1">
-                    <i class="fas fa-tachometer-alt mr-3"></i>
-                    <span class="flex-1">Dashboard</span>
-                    <i class="fas fa-chevron-down transition-transform" :class="open === 1 ? 'rotate-180' : ''"></i>
-                </button>
-                <div x-show="open === 1" class="pl-8 py-1">
-                    <a th:href="@{/dashboard}" class="block py-1 hover:text-primary transition">Overview</a>
-                </div>
-            </div>
-            <div>
-                <button class="flex items-center w-full px-3 py-2 rounded-lg hover:bg-neutral-800 transition" @click="open === 2 ? open = null : open = 2">
-                    <i class="fas fa-wallet mr-3"></i>
-                    <span class="flex-1">Accounts</span>
-                    <i class="fas fa-chevron-down transition-transform" :class="open === 2 ? 'rotate-180' : ''"></i>
-                </button>
-                <div x-show="open === 2" class="pl-8 py-1">
-                    <a th:href="@{/accounts}" class="block py-1 hover:text-primary transition">All Accounts</a>
-                    <a th:href="@{/accounts/settings}" class="block py-1 hover:text-primary transition">Settings</a>
-                </div>
-            </div>
-            <div>
-                <button class="flex items-center w-full px-3 py-2 rounded-lg hover:bg-neutral-800 transition" @click="open === 3 ? open = null : open = 3">
-                    <i class="fas fa-exchange-alt mr-3"></i>
-                    <span class="flex-1">Transactions</span>
-                    <i class="fas fa-chevron-down transition-transform" :class="open === 3 ? 'rotate-180' : ''"></i>
-                </button>
-                <div x-show="open === 3" class="pl-8 py-1">
-                    <a th:href="@{/transactions}" class="block py-1 hover:text-primary transition">All Transactions</a>
-                </div>
-            </div>
-            <div>
-                <button class="flex items-center w-full px-3 py-2 rounded-lg hover:bg-neutral-800 transition" @click="open === 4 ? open = null : open = 4">
-                    <i class="fas fa-coins mr-3"></i>
-                    <span class="flex-1">Currency</span>
-                    <i class="fas fa-chevron-down transition-transform" :class="open === 4 ? 'rotate-180' : ''"></i>
-                </button>
-                <div x-show="open === 4" class="pl-8 py-1">
-                    <a th:href="@{/currency}" class="block py-1 hover:text-primary transition">Currency Exchange</a>
-                </div>
-            </div>
-        </div>
-        <div class="mt-8 flex flex-col items-center gap-2">
-            <span class="font-medium text-neutral-200" th:text="${user.fullName != null ? user.fullName : user.username}">User</span>
-            <form th:action="@{/auth/logout}" method="post" class="w-full">
-                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-                <button type="submit" class="btn btn-error btn-sm w-full mt-2"><i class="fas fa-sign-out-alt"></i> Logout</button>
-            </form>
-        </div>
-    </aside>
+    <th:block th:replace="fragments/sidebar :: sidebar('accounts')"></th:block>
     <main class="flex-1 p-8">
         <div class="flex items-center justify-between mb-8">
             <div>
@@ -101,8 +46,8 @@
                 <div class="card-body gap-4">
                     <h3 class="font-semibold text-lg mb-2"><i class="fas fa-bolt"></i> Quick Actions</h3>
                     <div class="flex flex-wrap gap-2">
-                        <button class="btn btn-primary btn-sm flex items-center gap-2" onclick="openDepositModal([[${account.id}]])"><i class="fas fa-arrow-down"></i> Deposit</button>
-                        <button class="btn btn-secondary btn-sm flex items-center gap-2" onclick="openWithdrawModal([[${account.id}]])"><i class="fas fa-arrow-up"></i> Withdraw</button>
+                        <button class="btn btn-primary btn-sm flex items-center gap-2" th:onclick="|openDepositModal('${account.id}')|"><i class="fas fa-arrow-down"></i> Deposit</button>
+                        <button class="btn btn-secondary btn-sm flex items-center gap-2" th:onclick="|openWithdrawModal('${account.id}')|"><i class="fas fa-arrow-up"></i> Withdraw</button>
                         <a th:href="@{/transactions}" class="btn btn-outline btn-sm flex items-center gap-2"><i class="fas fa-exchange-alt"></i> Transfer</a>
                         <a th:href="@{/currency}" class="btn btn-outline btn-sm flex items-center gap-2"><i class="fas fa-coins"></i> Exchange</a>
                     </div>
