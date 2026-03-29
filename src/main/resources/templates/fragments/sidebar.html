@@ -5,49 +5,38 @@
         <i class="fas fa-university text-primary text-3xl mb-2"></i>
         <span class="font-bold text-xl text-primary">Accenture</span>
     </div>
-    <div x-data="{ open: null }" class="space-y-2">
+    <nav class="space-y-2">
         <div>
-            <button class="flex items-center w-full px-3 py-2 rounded-lg hover:bg-neutral-800 transition" @click="open === 1 ? open = null : open = 1">
+            <a th:href="@{/dashboard}" class="flex items-center w-full px-3 py-2 rounded-lg hover:bg-neutral-800 transition block py-1 hover:text-primary transition"
+               th:classappend="${activePage} == 'dashboard' ? 'text-primary font-bold' : ''">
                 <i class="fas fa-tachometer-alt mr-3"></i>
                 <span class="flex-1">Dashboard</span>
-                <i class="fas fa-chevron-down transition-transform" :class="open === 1 ? 'rotate-180' : ''"></i>
-            </button>
-            <div x-show="open === 1" class="pl-8 py-1">
-                <a th:href="@{/dashboard}" class="block py-1 hover:text-primary transition" th:classappend="${activePage} == 'dashboard' ? 'text-primary font-bold' : ''">Overview</a>
-            </div>
+            </a>
         </div>
         <div>
-            <button class="flex items-center w-full px-3 py-2 rounded-lg hover:bg-neutral-800 transition" @click="open === 2 ? open = null : open = 2">
+            <a th:href="@{/accounts}" class="flex items-center w-full px-3 py-2 rounded-lg hover:bg-neutral-800 transition block py-1 hover:text-primary transition"
+               th:classappend="${activePage} == 'accounts' ? 'text-primary font-bold' : ''">
                 <i class="fas fa-wallet mr-3"></i>
                 <span class="flex-1">Accounts</span>
-                <i class="fas fa-chevron-down transition-transform" :class="open === 2 ? 'rotate-180' : ''"></i>
-            </button>
-            <div x-show="open === 2" class="pl-8 py-1">
-                <a th:href="@{/accounts}" class="block py-1 hover:text-primary transition" th:classappend="${activePage} == 'accounts' ? 'text-primary font-bold' : ''">All Accounts</a>
-                <a th:href="@{/accounts/settings}" class="block py-1 hover:text-primary transition" th:classappend="${activePage} == 'settings' ? 'text-primary font-bold' : ''">Settings</a>
-            </div>
+            </a>
+            <a th:href="@{/accounts/settings}" class="block pl-10 py-1 hover:text-primary transition"
+               th:classappend="${activePage} == 'settings' ? 'text-primary font-bold' : ''">Settings</a>
         </div>
         <div>
-            <button class="flex items-center w-full px-3 py-2 rounded-lg hover:bg-neutral-800 transition" @click="open === 3 ? open = null : open = 3">
+            <a th:href="@{/transactions}" class="flex items-center w-full px-3 py-2 rounded-lg hover:bg-neutral-800 transition block py-1 hover:text-primary transition"
+               th:classappend="${activePage} == 'transactions' ? 'text-primary font-bold' : ''">
                 <i class="fas fa-exchange-alt mr-3"></i>
                 <span class="flex-1">Transactions</span>
-                <i class="fas fa-chevron-down transition-transform" :class="open === 3 ? 'rotate-180' : ''"></i>
-            </button>
-            <div x-show="open === 3" class="pl-8 py-1">
-                <a th:href="@{/transactions}" class="block py-1 hover:text-primary transition" th:classappend="${activePage} == 'transactions' ? 'text-primary font-bold' : ''">All Transactions</a>
-            </div>
+            </a>
         </div>
         <div>
-            <button class="flex items-center w-full px-3 py-2 rounded-lg hover:bg-neutral-800 transition" @click="open === 4 ? open = null : open = 4">
+            <a th:href="@{/currency}" class="flex items-center w-full px-3 py-2 rounded-lg hover:bg-neutral-800 transition block py-1 hover:text-primary transition"
+               th:classappend="${activePage} == 'currency' ? 'text-primary font-bold' : ''">
                 <i class="fas fa-coins mr-3"></i>
                 <span class="flex-1">Currency</span>
-                <i class="fas fa-chevron-down transition-transform" :class="open === 4 ? 'rotate-180' : ''"></i>
-            </button>
-            <div x-show="open === 4" class="pl-8 py-1">
-                <a th:href="@{/currency}" class="block py-1 hover:text-primary transition" th:classappend="${activePage} == 'currency' ? 'text-primary font-bold' : ''">Currency Exchange</a>
-            </div>
+            </a>
         </div>
-    </div>
+    </nav>
     <div class="mt-8 flex flex-col items-center gap-2">
         <span class="font-medium text-neutral-200" th:text="${user.fullName != null ? user.fullName : user.username}">User</span>
         <form th:action="@{/auth/logout}" method="post" class="w-full">
