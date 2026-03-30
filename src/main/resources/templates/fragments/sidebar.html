@@ -1,42 +1,40 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<aside class="sidebar custom-sidebar" th:fragment="sidebar(activePage)">
+<aside class="sidebar custom-sidebar items-center" th:fragment="sidebar(activePage)">
     <div class="flex flex-col items-center mb-6">
         <i class="fas fa-university text-primary text-3xl mb-2"></i>
-        <span class="font-bold text-xl text-primary">Accenture</span>
     </div>
-    <ul class="menu menu-vertical w-full px-1">
+    <ul class="menu menu-vertical items-center w-auto px-0">
         <li>
-            <a th:href="@{/dashboard}" th:classappend="${activePage} == 'dashboard' ? 'active' : ''" class="text-base-content flex items-center">
-                <i class="fas fa-tachometer-alt mr-2"></i> Dashboard
+            <a th:href="@{/dashboard}" th:classappend="${activePage} == 'dashboard' ? 'active' : ''" class="text-base-content flex flex-col items-center justify-center tooltip" data-tip="Dashboard">
+                <i class="fas fa-tachometer-alt text-2xl"></i>
             </a>
         </li>
         <li>
-            <a th:href="@{/accounts}" th:classappend="${activePage} == 'accounts' ? 'active' : ''" class="text-base-content flex items-center">
-                <i class="fas fa-wallet mr-2"></i> Accounts
+            <a th:href="@{/accounts}" th:classappend="${activePage} == 'accounts' ? 'active' : ''" class="text-base-content flex flex-col items-center justify-center tooltip" data-tip="Accounts">
+                <i class="fas fa-wallet text-2xl"></i>
             </a>
         </li>
         <li>
-            <a th:href="@{/transactions}" th:classappend="${activePage} == 'transactions' ? 'active' : ''" class="text-base-content flex items-center">
-                <i class="fas fa-exchange-alt mr-2"></i> Transactions
+            <a th:href="@{/transactions}" th:classappend="${activePage} == 'transactions' ? 'active' : ''" class="text-base-content flex flex-col items-center justify-center tooltip" data-tip="Transactions">
+                <i class="fas fa-exchange-alt text-2xl"></i>
             </a>
         </li>
         <li>
-            <a th:href="@{/currency}" th:classappend="${activePage} == 'currency' ? 'active' : ''" class="text-base-content flex items-center">
-                <i class="fas fa-coins mr-2"></i> Currency
+            <a th:href="@{/currency}" th:classappend="${activePage} == 'currency' ? 'active' : ''" class="text-base-content flex flex-col items-center justify-center tooltip" data-tip="Currency">
+                <i class="fas fa-coins text-2xl"></i>
             </a>
         </li>
         <li>
-            <a th:href="@{/accounts/settings}" th:classappend="${activePage} == 'settings' ? 'active' : ''" class="text-base-content flex items-center pl-8">
-                <i class="fas fa-cog mr-2"></i> Settings
+            <a th:href="@{/accounts/settings}" th:classappend="${activePage} == 'settings' ? 'active' : ''" class="text-base-content flex flex-col items-center justify-center tooltip" data-tip="Settings">
+                <i class="fas fa-cog text-2xl"></i>
             </a>
         </li>
     </ul>
     <div class="mt-8 flex flex-col items-center gap-2">
-        <span class="user-name font-semibold text-base-content" th:text="${user.fullName != null ? user.fullName : user.username}">User</span>
-        <form th:action="@{/auth/logout}" method="post" class="w-full">
+        <form th:action="@{/auth/logout}" method="post" class="w-full flex flex-col items-center">
             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-            <button type="submit" class="btn btn-error btn-sm w-full mt-2"><i class="fas fa-sign-out-alt"></i> Logout</button>
+            <button type="submit" class="btn btn-error btn-sm w-10 h-10 flex items-center justify-center tooltip" data-tip="Logout"><i class="fas fa-sign-out-alt text-xl"></i></button>
         </form>
     </div>
 </aside>
