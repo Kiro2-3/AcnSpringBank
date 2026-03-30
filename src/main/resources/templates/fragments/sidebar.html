@@ -5,40 +5,35 @@
         <i class="fas fa-university text-primary text-3xl mb-2"></i>
         <span class="font-bold text-xl text-primary">Accenture</span>
     </div>
-    <nav class="space-y-2">
-        <div>
-            <a th:href="@{/dashboard}" class="flex items-center w-full px-3 py-2 rounded-lg hover:bg-neutral-800 transition block py-1 hover:text-primary transition"
-               th:classappend="${activePage} == 'dashboard' ? 'text-primary font-bold' : ''">
-                <i class="fas fa-tachometer-alt mr-3"></i>
-                <span class="flex-1">Dashboard</span>
+    <ul class="menu menu-vertical w-full px-1">
+        <li>
+            <a th:href="@{/dashboard}" th:classappend="${activePage} == 'dashboard' ? 'active' : ''" class="text-base-content flex items-center">
+                <i class="fas fa-tachometer-alt mr-2"></i> Dashboard
             </a>
-        </div>
-        <div>
-            <a th:href="@{/accounts}" class="flex items-center w-full px-3 py-2 rounded-lg hover:bg-neutral-800 transition block py-1 hover:text-primary transition"
-               th:classappend="${activePage} == 'accounts' ? 'text-primary font-bold' : ''">
-                <i class="fas fa-wallet mr-3"></i>
-                <span class="flex-1">Accounts</span>
+        </li>
+        <li>
+            <a th:href="@{/accounts}" th:classappend="${activePage} == 'accounts' ? 'active' : ''" class="text-base-content flex items-center">
+                <i class="fas fa-wallet mr-2"></i> Accounts
             </a>
-            <a th:href="@{/accounts/settings}" class="block pl-10 py-1 hover:text-primary transition"
-               th:classappend="${activePage} == 'settings' ? 'text-primary font-bold' : ''">Settings</a>
-        </div>
-        <div>
-            <a th:href="@{/transactions}" class="flex items-center w-full px-3 py-2 rounded-lg hover:bg-neutral-800 transition block py-1 hover:text-primary transition"
-               th:classappend="${activePage} == 'transactions' ? 'text-primary font-bold' : ''">
-                <i class="fas fa-exchange-alt mr-3"></i>
-                <span class="flex-1">Transactions</span>
+        </li>
+        <li>
+            <a th:href="@{/transactions}" th:classappend="${activePage} == 'transactions' ? 'active' : ''" class="text-base-content flex items-center">
+                <i class="fas fa-exchange-alt mr-2"></i> Transactions
             </a>
-        </div>
-        <div>
-            <a th:href="@{/currency}" class="flex items-center w-full px-3 py-2 rounded-lg hover:bg-neutral-800 transition block py-1 hover:text-primary transition"
-               th:classappend="${activePage} == 'currency' ? 'text-primary font-bold' : ''">
-                <i class="fas fa-coins mr-3"></i>
-                <span class="flex-1">Currency</span>
+        </li>
+        <li>
+            <a th:href="@{/currency}" th:classappend="${activePage} == 'currency' ? 'active' : ''" class="text-base-content flex items-center">
+                <i class="fas fa-coins mr-2"></i> Currency
             </a>
-        </div>
-    </nav>
+        </li>
+        <li>
+            <a th:href="@{/accounts/settings}" th:classappend="${activePage} == 'settings' ? 'active' : ''" class="text-base-content flex items-center pl-8">
+                <i class="fas fa-cog mr-2"></i> Settings
+            </a>
+        </li>
+    </ul>
     <div class="mt-8 flex flex-col items-center gap-2">
-        <span class="font-medium text-neutral-200" th:text="${user.fullName != null ? user.fullName : user.username}">User</span>
+        <span class="user-name font-semibold text-base-content" th:text="${user.fullName != null ? user.fullName : user.username}">User</span>
         <form th:action="@{/auth/logout}" method="post" class="w-full">
             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
             <button type="submit" class="btn btn-error btn-sm w-full mt-2"><i class="fas fa-sign-out-alt"></i> Logout</button>
