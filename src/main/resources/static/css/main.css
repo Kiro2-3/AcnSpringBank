@@ -1,3 +1,16 @@
+/* ===== CUSTOM SIDEBAR DESIGN ===== */
+.custom-sidebar {
+    border: 3px solid var(--primary-light);
+    border-radius: 32px;
+    padding: 3rem 2rem 2.5rem 2rem;
+    background: linear-gradient(135deg, var(--surface) 80%, var(--bg-dark) 100%);
+    box-shadow: 0 8px 32px 0 rgba(74,108,247,0.10), 0 1.5px 8px 0 var(--shadow-dark);
+    transition: box-shadow 0.3s, border 0.3s;
+}
+.custom-sidebar:hover {
+    box-shadow: 0 12px 40px 0 rgba(74,108,247,0.18), 0 2px 12px 0 var(--shadow-dark);
+    border-color: var(--primary);
+}
 /* ===== NEOBANK - NEUMORPHISM UI DESIGN ===== */
 
 :root {
