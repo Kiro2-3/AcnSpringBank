@@ -20,6 +20,11 @@
                 <i class="fas fa-exchange-alt text-2xl"></i>
             </a>
         </li>
+            <li>
+                <a th:href="@{/transactions/history}" th:classappend="${activePage} == 'transactions-history' ? 'active' : ''" class="text-base-content flex flex-col items-center justify-center tooltip" data-tip="Transactions History">
+                    <i class="fas fa-history text-2xl"></i>
+                </a>
+            </li>
         <li>
             <a th:href="@{/currency}" th:classappend="${activePage} == 'currency' ? 'active' : ''" class="text-base-content flex flex-col items-center justify-center tooltip" data-tip="Currency">
                 <i class="fas fa-coins text-2xl"></i>
