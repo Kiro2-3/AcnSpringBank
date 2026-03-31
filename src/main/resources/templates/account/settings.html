@@ -7,6 +7,25 @@
     <th:block th:replace="fragments/sidebar :: sidebar('settings')"></th:block>
     <main class="main-content">
         <div class="max-w-2xl mx-auto">
+                        <!-- Profile Picture Upload Feature -->
+                        <div class="card bg-base-100 shadow-xl p-8 mb-8 flex flex-col items-center">
+                                <h3 class="text-xl font-semibold mb-4 text-base-content">Profile Picture</h3>
+                                <div class="mb-4">
+                                        <img id="profile-pic-preview" th:src="${user.profilePicUrl != null ? user.profilePicUrl : '/images/default-profile.png'}" alt="Profile Picture" class="rounded-full w-24 h-24 object-cover border-2 border-primary" />
+                                </div>
+                                <form th:action="@{/accounts/upload-profile-pic}" method="post" enctype="multipart/form-data" class="flex flex-col items-center gap-2">
+                                        <input type="file" name="profilePic" accept="image/*" class="file-input file-input-bordered w-full max-w-xs" onchange="previewProfilePic(event)" />
+                                        <button type="submit" class="btn btn-primary">Upload</button>
+                                </form>
+                                <script>
+                                function previewProfilePic(event) {
+                                    const [file] = event.target.files;
+                                    if (file) {
+                                        document.getElementById('profile-pic-preview').src = URL.createObjectURL(file);
+                                    }
+                                }
+                                </script>
+                        </div>
             <div class="card bg-base-100 shadow-xl p-8 mb-8">
                 <h2 class="text-2xl font-bold mb-6 text-primary">Account Settings</h2>
                 <form th:action="@{/accounts/settings}" th:object="${user}" method="post" class="space-y-6 mb-10">
