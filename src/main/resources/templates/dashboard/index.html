@@ -42,6 +42,12 @@
                 <div class="text-2xl font-bold text-primary" th:text="${#dates.format(#dates.createNow(), 'EEEE, MMMM d, yyyy')}">Monday, March 31, 2026</div>
             </div>
         </div>
+
+        <!-- Dashboard Summary Chart -->
+        <div class="card bg-base-100 shadow-xl p-8 mb-8">
+            <h3 class="text-xl font-semibold mb-4 text-base-content">Account Balance Overview</h3>
+            <div id="dashboard-summary-chart"></div>
+        </div>
         <div class="stats-grid">
             <div class="stat-card neu-card">
                 <div class="stat-icon bg-blue">
@@ -150,4 +156,5 @@
 
 <script th:src="@{/js/main.js}"></script>
 </body>
+<script type="module" src="/frontend/dashboard-charts.js"></script>
 </html>
