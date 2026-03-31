@@ -50,6 +50,33 @@
                     </div>
                     <button type="submit" class="btn btn-primary w-full">Save Settings</button>
                 </form>
+                <!-- Language and Timezone Settings -->
+                <div class="mt-8">
+                    <h3 class="text-lg font-semibold mb-2 text-base-content">Preferences</h3>
+                    <form th:action="@{/accounts/preferences}" method="post" class="flex flex-col gap-4">
+                        <div class="form-control">
+                            <label class="label">
+                                <span class="label-text">Language:</span>
+                            </label>
+                            <select name="language" class="select select-bordered">
+                                <option th:selected="${language == 'en'}" value="en">English</option>
+                                <option th:selected="${language == 'es'}" value="es">Spanish</option>
+                                <option th:selected="${language == 'fr'}" value="fr">French</option>
+                                <option th:selected="${language == 'de'}" value="de">German</option>
+                                <option th:selected="${language == 'zh'}" value="zh">Chinese</option>
+                            </select>
+                        </div>
+                        <div class="form-control">
+                            <label class="label">
+                                <span class="label-text">Timezone:</span>
+                            </label>
+                            <select name="timezone" class="select select-bordered">
+                                <option th:each="tz : ${timezones}" th:value="${tz}" th:text="${tz}" th:selected="${tz == timezone}">UTC</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-secondary w-full">Save Preferences</button>
+                    </form>
+                </div>
                 <!-- Random Motivational Quote Feature -->
                 <div class="mt-8">
                     <h3 class="text-lg font-semibold mb-2 text-base-content">Need Motivation?</h3>
