@@ -7,6 +7,31 @@
     <th:block th:replace="fragments/sidebar :: sidebar('settings')"></th:block>
     <main class="main-content">
         <div class="max-w-2xl mx-auto">
+            <!-- Profile Configuration Card -->
+            <div class="card bg-base-100 shadow-xl p-8 mb-8">
+                <h3 class="text-xl font-semibold mb-4 text-base-content">Profile Configuration</h3>
+                <form th:action="@{/accounts/update-profile}" th:object="${user}" method="post" class="space-y-6">
+                    <div class="form-control">
+                        <label class="label">
+                            <span class="label-text">Full Name:</span>
+                        </label>
+                        <input type="text" th:field="*{fullName}" class="input input-bordered" placeholder="Enter your full name" />
+                    </div>
+                    <div class="form-control">
+                        <label class="label">
+                            <span class="label-text">Phone Number:</span>
+                        </label>
+                        <input type="tel" th:field="*{phoneNumber}" class="input input-bordered" placeholder="Enter your phone number" />
+                    </div>
+                    <div class="form-control">
+                        <label class="label">
+                            <span class="label-text">Address:</span>
+                        </label>
+                        <input type="text" th:field="*{address}" class="input input-bordered" placeholder="Enter your address" />
+                    </div>
+                    <button type="submit" class="btn btn-success w-full">Save Profile</button>
+                </form>
+            </div>
                         <!-- Profile Picture Upload Feature -->
                         <div class="card bg-base-100 shadow-xl p-8 mb-8 flex flex-col items-center">
                                 <h3 class="text-xl font-semibold mb-4 text-base-content">Profile Picture</h3>
