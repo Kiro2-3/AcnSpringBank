@@ -32,6 +32,16 @@
         </div>
 
         <!-- Summary Cards -->
+        <!-- Calendar Card -->
+        <div class="calendar-card neu-card mb-8 flex items-center gap-4 p-6 bg-base-100 shadow">
+            <div class="calendar-icon flex flex-col items-center justify-center">
+                <i class="fas fa-calendar-alt text-4xl text-primary"></i>
+            </div>
+            <div class="calendar-info">
+                <div class="text-lg font-semibold text-base-content">Today is</div>
+                <div class="text-2xl font-bold text-primary" th:text="${#dates.format(#dates.createNow(), 'EEEE, MMMM d, yyyy')}">Monday, March 31, 2026</div>
+            </div>
+        </div>
         <div class="stats-grid">
             <div class="stat-card neu-card">
                 <div class="stat-icon bg-blue">
