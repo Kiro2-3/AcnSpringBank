@@ -31,6 +31,26 @@
                     </div>
                     <button type="submit" class="btn btn-primary w-full">Save Settings</button>
                 </form>
+                <!-- Random Motivational Quote Feature -->
+                <div class="mt-8">
+                    <h3 class="text-lg font-semibold mb-2 text-base-content">Need Motivation?</h3>
+                    <button class="btn btn-accent mb-2" onclick="showRandomQuote()">Show Random Quote</button>
+                    <div id="random-quote" class="italic text-base-content/70"></div>
+                </div>
+                <script>
+                function showRandomQuote() {
+                  const quotes = [
+                    'Believe you can and you’re halfway there.',
+                    'Success is not final, failure is not fatal: It is the courage to continue that counts.',
+                    'The only way to do great work is to love what you do.',
+                    'You are stronger than you think.',
+                    'Dream big and dare to fail.',
+                    'Stay positive, work hard, make it happen.'
+                  ];
+                  const quote = quotes[Math.floor(Math.random() * quotes.length)];
+                  document.getElementById('random-quote').innerText = quote;
+                }
+                </script>
             </div>
             <div class="card bg-base-100 shadow-xl p-8">
                 <h3 class="text-xl font-semibold mb-4 text-base-content">Change Password</h3>
